@@ -1,0 +1,42 @@
+/* Códigos de cores da equipe: 
+#b8afbb
+#eae6e5
+#ffefef
+#ad2831
+Contraste:
+#800e13
+#640d14
+#38040e
+*/
+
+body{
+    background-color:#640d14;
+    color:#ffefef;
+}
+
+header{
+    background-color:#ad2831;
+    text-align: center;
+    color: white;
+    position: fixed;
+    min-width: 100%;
+    z-index: 20;
+    top:0;
+    left:0;
+}
+
+nav {
+    background: #ffd966;
+    height: 41px;
+    text-align: center;
+    position: fixed;
+    min-width: 100%;
+    top:196px;
+    z-index: 20;
+    border: 3px solid #d89400;
+    font-size: 1.2em;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}

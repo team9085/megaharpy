@@ -7,10 +7,26 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+     <div id="tela1" style="display: block;">
     <header>
         <img src="assets/images/Harpia Fundo Branco.svg" width="8.5%">
     </header>
     <br><br><br>
     <h1>BIG TEXT</h1>
+        <button onclick="
+            document.getElementById('tela1').style.display = 'none';
+            document.getElementById('tela2').style.display = 'block';
+                ">
+            Nossa história
+        </button>
+     </div>
+     <div id="tela2" style="display: none;">
+         <button onclick="
+            document.getElementById('tela2').style.display = 'none';
+            document.getElementById('tela1').style.display = 'block';
+           ">
+            Voltar
+        </button>
+    </div>
 </body>
 </html>

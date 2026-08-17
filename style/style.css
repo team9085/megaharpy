@@ -10,7 +10,15 @@ Contraste:
 */
 
 @font-face {
-  font-family: 'MyCustomFont';
+  font-family: 'GlacialIndifference';
+  src: url('../assets/fonts/glacial-indifference.regular.otf') format('otf'),
+       url('../assets/fonts/glacial-indifference.regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kagitingan';
   src: url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('otf'),
        url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('truetype');
   font-weight: normal;
@@ -20,7 +28,7 @@ Contraste:
 body{
     background-color:#ffefef;
     color:#640d14;
-    font-family: 'MyCustomFont', sans-serif;
+    font-family: 'GlacialIndifference', sans-serif;
 }
 
 header{
@@ -42,6 +50,7 @@ header h1 {
     margin-left:10px;
     margin-bottom:0;
     font-size:60px;
+    font-family: 'Kagitingan', sans-serif;
 }
 
 nav {
@@ -65,6 +74,7 @@ nav a {
     z-index: 20;
     transition: all 0.2s ease;
     color: #ffefef;
+    font-family: 'Kagitingan', sans-serif;
     text-decoration: none;
 }
 

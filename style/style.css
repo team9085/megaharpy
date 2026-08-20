@@ -29,20 +29,42 @@ body{
     background-color:#ffefef;
     color:#640d14;
     font-family: 'GlacialIndifference', sans-serif;
+    margin:0;
+}
+
+.conteudo {
+    margin:20px;
+    text-align:justify;
 }
 
 header{
-    background-color:#ad2831;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
+    background: linear-gradient(to right, #800e13, #e02e39, #800e13);
     color: white;
     position: fixed;
     min-width: 100%;
     z-index: 20;
     top:0;
     left:0;
+}
+
+header::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("../assets/images/header_background.png");
+    background-size: 150px;
+
+    opacity: 0.3;
+    z-index: -1;
+}
+
+#leftwing {
+    left:0;
+}
+
+#rightwing {
+    right:0;
 }
 
 header h1 {
@@ -90,4 +112,52 @@ nav p {
     z-index: 21;
     color: #ffefef;
     font-weight:bolder;
+}
+
+.bottom {
+    background: linear-gradient(to right, #640d14, #ad2831, #640d14);
+    color:white;
+    padding: 10px;
+    margin:0;
+    width: 100%;
+    box-sizing: border-box;
+    left:0;
+    bottom:0;
+    text-align:justify;
+}
+
+.bottom h1 {
+    text-align:center;
+    margin-top:0;
+    margin-bottom:0;
+    font-size:30px;
+}
+
+.alinhado {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.empilhado {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.highlight {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.highlight:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.highlight:active {
+    transform: scale(0.9);
+    filter: brightness(0.9);
 }

@@ -61,10 +61,16 @@ header::before{
 
 #leftwing {
     left:0;
+    z-index: 21;
+    position:fixed;
+    opacity:50%;
 }
 
 #rightwing {
     right:0;
+    z-index: 21;
+    position:fixed;
+    opacity:50%;
 }
 
 header h1 {

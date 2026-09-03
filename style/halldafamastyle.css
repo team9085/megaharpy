@@ -25,11 +25,25 @@ Contraste:
   font-style: normal;
 }
 
-body{
-    background-color:#640d14;
-    color:#ffefef;
+body {
+    background-color: #580006;
+    color: #ffefef;
     font-family: 'GlacialIndifference', sans-serif;
-    margin:0;
+    margin: 0;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("../assets/images/harpia branca.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 500px;
+    opacity: 0.3;
+    z-index: -1;
 }
 
 .conteudo {
@@ -53,7 +67,7 @@ header::before{
     inset: 0;
 
     background-image: url("../assets/images/header_background.png");
-    background-size: 150px;
+    background-size: 135px;
 
     opacity: 0.3;
     z-index: -1;
@@ -82,7 +96,7 @@ header h1 {
 }
 
 nav {
-    background: #640d14;
+    background: #75111a;
     text-align: center;
     position: fixed;
     min-width: 100%;
@@ -125,6 +139,7 @@ nav p {
     text-align:center;
     font-family: 'Kagitingan', sans-serif;
     font-size: 50px;
+    margin-bottom:0px;
 }
 
 .bottom {

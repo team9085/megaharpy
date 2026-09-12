@@ -10,49 +10,49 @@ Contraste:
 */
 
 @font-face {
-  font-family: 'GlacialIndifference';
-  src: url('../assets/fonts/glacial-indifference.regular.otf') format('otf'),
-       url('../assets/fonts/glacial-indifference.regular.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'GlacialIndifference';
+    src: url('../assets/fonts/glacial-indifference.regular.otf') format('otf'),
+        url('../assets/fonts/glacial-indifference.regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Kagitingan';
-  src: url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('otf'),
-       url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Kagitingan';
+    src: url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('otf'),
+        url('../assets/fonts/\(v2\)-Kagitingan-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body{
-    background-color:#ffefef;
-    color:#640d14;
+body {
+    background-color: #ffefef;
+    color: #640d14;
     font-family: 'GlacialIndifference', sans-serif;
-    margin:0;
+    margin: 0;
 }
 
 .conteudo {
-    margin:20px;
-    text-align:justify;
+    margin: 20px;
+    text-align: justify;
 }
 
-header{
+header {
     background: linear-gradient(to right, #800e13, #e02e39, #800e13);
     color: white;
     position: fixed;
     min-width: 100%;
     z-index: 20;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 }
 
-header::before{
+header::before {
     content: "";
     position: absolute;
     inset: 0;
 
-    background-image: url("../assets/images/header_background.png");
+    background-image: url("../assets/images/png/header_background.png");
     background-size: 135px;
 
     opacity: 0.3;
@@ -60,10 +60,10 @@ header::before{
 }
 
 header h1 {
-    margin-top:0;
-    margin-left:10px;
-    margin-bottom:0;
-    font-size:60px;
+    margin-top: 0;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-size: 60px;
     font-family: 'Kagitingan', sans-serif;
 }
 
@@ -73,13 +73,13 @@ nav {
     position: fixed;
     min-width: 100%;
     z-index: 19;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
-    height:30px;
-    top:117px;
-    left:0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    top: 117px;
+    left: 0;
     box-shadow: 0 4px 50px rgba(0, 0, 0, 0.6);
 }
 
@@ -104,46 +104,46 @@ nav a:active {
 nav p {
     z-index: 21;
     color: #ffefef;
-    font-weight:bolder;
+    font-weight: bolder;
 }
 
 .team {
-    text-align:center;
+    text-align: center;
     font-family: 'Kagitingan', sans-serif;
     font-size: 50px;
 }
 
 .bottom {
     background: linear-gradient(to right, #640d14, #ad2831, #640d14);
-    color:white;
+    color: white;
     padding: 10px;
-    margin:0;
+    margin: 0;
     width: 100%;
     box-sizing: border-box;
-    left:0;
-    bottom:0;
-    text-align:justify;
+    left: 0;
+    bottom: 0;
+    text-align: justify;
 }
 
 .bottom h1 {
-    text-align:center;
-    margin-top:0;
-    margin-bottom:0;
-    font-size:30px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 30px;
 }
 
 .alinhado {
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .empilhado {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .highlight {

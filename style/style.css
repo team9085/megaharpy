@@ -9,6 +9,52 @@ Contraste:
 #38040e
 */
 
+* {
+    box-sizing: border-box;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius:50px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
 @font-face {
     font-family: 'GlacialIndifference';
     src: url('../assets/fonts/glacial-indifference.regular.otf') format('otf'),
@@ -32,7 +78,7 @@ body {
     margin: 0;
 }
 
-.conteudo {
+main {
     margin: 20px;
     text-align: justify;
 }
@@ -113,7 +159,7 @@ nav p {
     font-size: 50px;
 }
 
-.bottom {
+footer {
     background: linear-gradient(to right, #640d14, #ad2831, #640d14);
     color: white;
     padding: 10px;
@@ -125,7 +171,7 @@ nav p {
     text-align: justify;
 }
 
-.bottom h1 {
+footer h1 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 0;

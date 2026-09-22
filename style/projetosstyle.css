@@ -1,59 +1,3 @@
-/* Códigos de cores da equipe: 
-#b8afbb
-#eae6e5
-#ffefef
-#ad2831
-Contraste:
-#800e13
-#640d14
-#38040e
-*/
-
-* {
-    box-sizing: border-box;
-}
-
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.slide {
-    min-width: 100%;
-}
-
-.slide img {
-    width: 100%;
-    display: block;
-}
-
-.btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 30px;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius:50px;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
 @font-face {
     font-family: 'GlacialIndifference';
     src: url('../assets/fonts/glacial-indifference.regular.otf') format('otf'),
@@ -112,6 +56,13 @@ header h1 {
     font-family: 'Kagitingan', sans-serif;
 }
 
+main h1 {
+    font-size: 60px;
+    font-family: 'Kagitingan', sans-serif;
+    justify-content: center;
+    display:flex;
+}
+
 nav {
     background: #640d14;
     text-align: center;
@@ -152,12 +103,6 @@ nav p {
     font-weight: bolder;
 }
 
-.team {
-    text-align: center;
-    font-family: 'Kagitingan', sans-serif;
-    font-size: 50px;
-}
-
 footer {
     background: linear-gradient(to right, #640d14, #ad2831, #640d14);
     color: white;
@@ -177,16 +122,82 @@ footer h1 {
     font-size: 30px;
 }
 
+.projeto1 {
+    background-color: #ad2831;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    border-radius:15px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #ffefef;
+    margin: 10px;
+    padding:10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.projeto1 img{
+    border-radius:15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.projeto1:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+.projeto1:active {
+    transform: scale(0.95);
+    filter: brightness(0.95);
+}
+
+.projeto2 {
+    background-color: #640d14;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    border-radius:15px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #ffefef;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.projeto2 img{
+    border-radius:15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.projeto2:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+.projeto2:active {
+    transform: scale(0.95);
+    filter: brightness(0.95);
+}
+
+.margin {
+    margin: 5px;
+}
+
+.imagemargin {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 .alinhado {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.empilhado {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -204,4 +215,8 @@ footer h1 {
 .highlight:active {
     transform: scale(0.9);
     filter: brightness(0.9);
+}
+
+h2 {
+    font-family: 'Kagitingan', sans-serif;
 }

@@ -61,6 +61,8 @@ main h1 {
     font-family: 'Kagitingan', sans-serif;
     justify-content: center;
     display:flex;
+    margin-top:0px;
+    margin-bottom: 3px;
 }
 
 nav {
@@ -146,12 +148,12 @@ footer h1 {
 
 .projeto1:hover {
     transform: scale(1.05);
-    filter: brightness(1.05);
+    filter: brightness(1.1);
 }
 
 .projeto1:active {
     transform: scale(0.95);
-    filter: brightness(0.95);
+    filter: brightness(0.9);
 }
 
 .projeto2 {
@@ -178,12 +180,12 @@ footer h1 {
 
 .projeto2:hover {
     transform: scale(1.05);
-    filter: brightness(1.05);
+    filter: brightness(1.1);
 }
 
 .projeto2:active {
     transform: scale(0.95);
-    filter: brightness(0.95);
+    filter: brightness(0.9);
 }
 
 .margin {
@@ -214,6 +216,21 @@ footer h1 {
 
 .highlight:active {
     transform: scale(0.9);
+    filter: brightness(0.9);
+}
+
+.sponsors {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sponsors:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.sponsors:active {
+    transform: scale(0.95);
     filter: brightness(0.9);
 }
 

@@ -6,7 +6,7 @@ Color palette:
 #eae6e5
 #ffefef
 #ad2831
-Contraste:
+Contrast:
 #800e13
 #640d14
 #38040e

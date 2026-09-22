@@ -178,3 +178,18 @@ footer h1 {
     transform: scale(0.9);
     filter: brightness(0.9);
 }
+
+.sponsors {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sponsors:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.sponsors:active {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}

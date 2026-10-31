@@ -63,8 +63,11 @@
         setMessage("Redirecionando para o Google...", "info");
 
         try {
-            // Return to the protected portal after Supabase completes OAuth.
-            const redirectTo = new URL("portal.html", window.location.href).href;
+            // Use the canonical GitHub Pages URL in production. This avoids
+            // accidentally falling back to a localhost Site URL after OAuth.
+            const redirectTo = window.location.hostname === "team9085.github.io"
+                ? "https://team9085.github.io/megaharpy/pages/portal.html"
+                : new URL("portal.html", window.location.href).href;
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "google",
                 options: {
@@ -102,7 +105,9 @@
         setMessage("Enviando solicitação...", "info");
 
         try {
-            const redirectTo = new URL("redefinir-senha.html", window.location.href).href;
+            const redirectTo = window.location.hostname === "team9085.github.io"
+                ? "https://team9085.github.io/megaharpy/pages/redefinir-senha.html"
+                : new URL("redefinir-senha.html", window.location.href).href;
             const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
 
             if (error) {

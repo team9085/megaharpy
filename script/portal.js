@@ -37,13 +37,19 @@
         const user = userData.user;
         const { data: profile, error: profileError } = await supabase
             .from("profiles")
-            .select("full_name, role, created_at")
+            .select("full_name, role, created_at, is_active")
             .eq("id", user.id)
             .single();
 
         if (profileError || !profile) {
             console.error("Não foi possível carregar o perfil:", profileError);
             showError("Sua conta foi autenticada, mas o perfil da equipe não foi encontrado. Procure um administrador da Mega Harpy.");
+            return;
+        }
+
+        if (profile.is_active === false) {
+            await supabase.auth.signOut();
+            window.location.replace("login.html?status=inactive");
             return;
         }
 

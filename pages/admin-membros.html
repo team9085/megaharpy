@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Gerenciar membros | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+</head>
+<body class="portal-page admin-members-page">
+    <header class="portal-header">
+        <a class="brand" href="../index.html" aria-label="Site da Mega Harpy">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <a class="outline-button header-link" href="portal.html">Voltar ao portal</a>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <section class="welcome-section">
+            <div>
+                <span class="eyebrow">ADMINISTRAÇÃO DO PORTAL</span>
+                <h1>Gerenciar membros</h1>
+                <p>Convide integrantes, ajuste permissões e gerencie o acesso ao ambiente interno.</p>
+            </div>
+            <div class="role-pill">Administrador</div>
+        </section>
+
+        <section id="admin-message" class="notice" hidden role="status" aria-live="polite"></section>
+
+        <section id="access-denied" class="notice error" hidden role="alert">
+            Esta área é restrita a administradores ativos.
+            <a href="portal.html">Voltar ao portal</a>
+        </section>
+
+        <div id="admin-content" hidden>
+            <section class="admin-stats" aria-label="Resumo de membros">
+                <article class="admin-stat-card">
+                    <span class="admin-stat-label">Total de contas</span>
+                    <strong id="count-total">—</strong>
+                </article>
+                <article class="admin-stat-card">
+                    <span class="admin-stat-label">Ativos</span>
+                    <strong id="count-active">—</strong>
+                </article>
+                <article class="admin-stat-card">
+                    <span class="admin-stat-label">Convites pendentes</span>
+                    <strong id="count-pending">—</strong>
+                </article>
+                <article class="admin-stat-card">
+                    <span class="admin-stat-label">Suspensos</span>
+                    <strong id="count-suspended">—</strong>
+                </article>
+            </section>
+
+            <section class="admin-panel invite-panel">
+                <div class="admin-panel-heading">
+                    <div>
+                        <span class="eyebrow">NOVO ACESSO</span>
+                        <h2>Convidar membro</h2>
+                        <p>O integrante receberá um e-mail para ativar a conta e definir a própria senha.</p>
+                    </div>
+                </div>
+
+                <form id="invite-form" class="invite-form">
+                    <div class="admin-field">
+                        <label for="invite-name">Nome completo</label>
+                        <input id="invite-name" name="fullName" type="text" minlength="2" maxlength="120" autocomplete="name" placeholder="Nome do integrante" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="invite-email">E-mail</label>
+                        <input id="invite-email" name="email" type="email" autocomplete="email" placeholder="integrante@exemplo.com" required>
+                    </div>
+                    <div class="admin-field">
+                        <label for="invite-role">Nível de acesso</label>
+                        <select id="invite-role" name="role" required>
+                            <option value="member">Membro</option>
+                            <option value="reviewer">Revisor</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                    <button class="primary-button invite-submit" id="invite-submit" type="submit">
+                        <span class="button-label">Enviar convite</span>
+                        <span class="button-spinner" aria-hidden="true"></span>
+                    </button>
+                </form>
+                <p id="invite-message" class="form-message" role="status" aria-live="polite"></p>
+            </section>
+
+            <section class="admin-panel members-panel">
+                <div class="admin-panel-heading members-heading">
+                    <div>
+                        <span class="eyebrow">DIRETÓRIO DA EQUIPE</span>
+                        <h2>Membros cadastrados</h2>
+                        <p>As alterações de nível de acesso são aplicadas no banco de dados.</p>
+                    </div>
+                    <button id="refresh-members" class="secondary-button" type="button">↻ Atualizar lista</button>
+                </div>
+
+                <div class="members-toolbar">
+                    <label class="search-field" for="member-search">
+                        <span aria-hidden="true">⌕</span>
+                        <input id="member-search" type="search" placeholder="Buscar por nome ou e-mail..." autocomplete="off">
+                    </label>
+                    <label class="filter-field" for="role-filter">
+                        <span>Filtrar função</span>
+                        <select id="role-filter">
+                            <option value="all">Todas</option>
+                            <option value="member">Membros</option>
+                            <option value="reviewer">Revisores</option>
+                            <option value="admin">Administradores</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="members-table-wrap">
+                    <table class="members-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Integrante</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Nível de acesso</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Cadastro</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="members-table-body">
+                            <tr><td class="table-placeholder" colspan="6">Carregando membros...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="members-empty" class="empty-state" hidden>Nenhum membro corresponde à busca.</p>
+                <p class="admin-footnote">Por segurança, esta interface não permite excluir contas nem suspender administradores. A conta do administrador conectado também não pode ter seu nível de acesso alterado por aqui.</p>
+            </section>
+        </div>
+
+        <p class="portal-disclaimer">Gerenciamento restrito. As operações administrativas são validadas novamente pela Edge Function e pelo Supabase.</p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/admin-membros.js"></script>
+</body>
+</html>

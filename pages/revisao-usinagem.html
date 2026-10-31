@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Revisar relatório de usinagem | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css?v=20261031-2">
+</head>
+<body class="portal-page documentation-page">
+    <header class="portal-header">
+        <a class="brand" href="../index.html" aria-label="Site da Mega Harpy">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <a class="outline-button header-link" href="portal.html">Voltar ao portal</a>
+            <a class="outline-button header-link" href="revisoes.html">Fila de revisão</a>
+            <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+    <main class="portal-main docs-main">
+        <section class="report-title-row">
+            <div>
+                <span class="eyebrow">CONTROLE DE QUALIDADE · MECÂNICA</span>
+                <h1>Revisar relatório de usinagem</h1>
+                <p id="review-subtitle">Carregando documento...</p>
+            </div>
+            <div class="report-identification">
+                <span>Código do documento</span>
+                <strong id="review-document-code">—</strong>
+                <span id="review-document-status" class="status-badge submitted">Aguardando revisão</span>
+            </div>
+        </section>
+        <section id="review-detail-error" class="notice error" hidden role="alert"></section>
+        <section id="review-detail-feedback" class="notice success" hidden role="status" aria-live="polite"></section>
+        <div id="review-detail-content" hidden>
+            <section class="docs-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">IDENTIFICAÇÃO</span><h2>Execução</h2></div></div>
+                <div class="review-data-grid">
+                    <div><span>Tipo de registro</span><strong id="review-record-part">—</strong></div>
+                    <div><span>Data de execução</span><strong id="review-execution-date">—</strong></div>
+                    <div><span>Horário</span><strong id="review-execution-time">—</strong></div>
+                    <div><span>Executado por</span><strong id="review-executor">—</strong></div>
+                    <div><span>Código da peça</span><strong id="review-part-code">—</strong></div>
+                    <div><span>Máquina utilizada</span><strong id="review-machine">—</strong></div>
+                    <div><span>Material</span><strong id="review-material">—</strong></div>
+                    <div><span>Dimensões do bruto</span><strong id="review-raw-dimensions">—</strong></div>
+                </div>
+            </section>
+            <section class="docs-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">PROCESSO</span><h2>Etapas executadas</h2></div></div>
+                <div class="review-long-field"><span>Operações realizadas</span><p id="review-operations">—</p></div>
+                <div class="review-long-field"><span>Ferramentas utilizadas</span><p id="review-tools">—</p></div>
+            </section>
+            <section class="docs-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">CONTROLE DIMENSIONAL</span><h2>Validação dimensional</h2></div></div>
+                <div class="docs-table-wrap">
+                    <table class="docs-table review-dimensions-table">
+                        <thead><tr><th>Cota projetada</th><th>Cota medida</th><th>Dentro da tolerância?</th></tr></thead>
+                        <tbody id="review-dimensions-body"><tr><td colspan="3" class="docs-placeholder">Nenhuma cota registrada.</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="docs-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">RESULTADO</span><h2>Observações e produção</h2></div></div>
+                <div class="review-data-grid">
+                    <div><span>Peças produzidas</span><strong id="review-produced">0</strong></div>
+                    <div><span>Peças refugadas</span><strong id="review-scrap">0</strong></div>
+                </div>
+                <div class="review-long-field"><span>Observações / ocorrências</span><p id="review-observations">—</p></div>
+            </section>
+            <section class="docs-panel review-decision-panel" id="review-decision-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">DECISÃO DO REVISOR</span><h2>Registrar revisão técnica</h2><p>O resultado será registrado no histórico do documento.</p></div></div>
+                <label class="docs-field" for="review-decision-notes">
+                    <span>Observações da revisão</span>
+                    <textarea id="review-decision-notes" rows="5" maxlength="5000" placeholder="Descreva a validação realizada ou as correções necessárias..."></textarea>
+                </label>
+                <div class="review-actions">
+                    <button class="secondary-button request-changes-button" id="review-request-changes" type="button">Solicitar correções</button>
+                    <button class="primary-button" id="review-approve" type="button">Aprovar relatório</button>
+                </div>
+            </section>
+            <section class="docs-panel">
+                <div class="docs-panel-heading"><div><span class="eyebrow">HISTÓRICO</span><h2>Revisões anteriores</h2></div></div>
+                <div id="review-detail-history" class="review-history-list"></div>
+            </section>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/revisao-usinagem.js?v=20261031-2"></script>
+</body>
+</html>

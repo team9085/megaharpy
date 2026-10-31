@@ -19,7 +19,6 @@
             <button id="logout-button" class="outline-button" type="button">Sair</button>
         </div>
     </header>
-
     <main class="portal-main">
         <section class="welcome-section">
             <div>
@@ -31,7 +30,6 @@
         </section>
 
         <section id="portal-error" class="notice error" hidden role="alert"></section>
-
         <section class="portal-grid" id="portal-content" hidden>
             <a class="portal-card" href="documentos.html" aria-label="Abrir documentação de engenharia">
                 <span class="card-icon">▤</span>
@@ -39,36 +37,31 @@
                 <span class="card-description">Relatórios de usinagem e registros de processos da equipe.</span>
                 <span class="card-status">Acessar documentos</span>
             </a>
-
             <a class="portal-card" href="#engenharia" aria-label="Área de engenharia, em desenvolvimento">
                 <span class="card-icon">⌘</span>
                 <span class="card-title">Engenharia</span>
                 <span class="card-description">Peças, montagens e ordens de mudança.</span>
                 <span class="card-status">Em desenvolvimento</span>
             </a>
-
             <a class="portal-card" href="#fracas" aria-label="Área de falhas, em desenvolvimento">
                 <span class="card-icon">!</span>
                 <span class="card-title">Falhas e ações corretivas</span>
                 <span class="card-description">Registros FRACAS e acompanhamento de ações.</span>
                 <span class="card-status">Em desenvolvimento</span>
             </a>
-
-            <article class="portal-card role-card" id="reviewer-tools" hidden>
+            <a class="portal-card role-card" id="reviewer-tools" href="revisoes.html" aria-label="Abrir fila de revisão técnica" hidden>
                 <span class="card-icon">✓</span>
                 <span class="card-title">Revisão técnica</span>
-                <span class="card-description">Área reservada a revisores e aprovadores.</span>
-                <span class="card-status">Acesso de revisor</span>
-            </article>
-
-            <a class="portal-card role-card" id="admin-tools" href="admin-membros.html" hidden>
+                <span class="card-description">Consultar documentos enviados e registrar decisões de revisão.</span>
+                <span class="card-status">Abrir fila de revisão</span>
+            </a>
+            <a class="portal-card role-card" id="admin-tools" href="admin-membros.html" aria-label="Gerenciar membros e permissões" hidden>
                 <span class="card-icon">⚙</span>
                 <span class="card-title">Administração</span>
                 <span class="card-description">Gerenciar membros, convites e níveis de acesso.</span>
                 <span class="card-status">Gerenciar membros</span>
             </a>
         </section>
-
         <section class="profile-panel" id="profile-panel" hidden>
             <div>
                 <span class="eyebrow">SEU PERFIL</span>
@@ -80,7 +73,6 @@
                 <div><dt>Membro desde</dt><dd id="profile-created">—</dd></div>
             </dl>
         </section>
-
         <p class="portal-disclaimer">As áreas exibidas estão em implantação. As permissões dos dados são aplicadas no banco de dados, não apenas nesta interface.</p>
     </main>
 

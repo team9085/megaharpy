@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Revisão técnica | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css?v=20261031-2">
+</head>
+<body class="portal-page documentation-page">
+    <header class="portal-header">
+        <a class="brand" href="../index.html" aria-label="Site da Mega Harpy">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <a class="outline-button header-link" href="portal.html">Voltar ao portal</a>
+            <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+    <main class="portal-main docs-main">
+        <section class="welcome-section docs-heading">
+            <div>
+                <span class="eyebrow">CONTROLE DE QUALIDADE</span>
+                <h1>Fila de revisão técnica</h1>
+                <p>Documentos enviados pelos membros e aguardando avaliação de um revisor.</p>
+            </div>
+            <button class="secondary-button" id="refresh-reviews" type="button">↻ Atualizar fila</button>
+        </section>
+        <section id="review-queue-error" class="notice error" hidden role="alert"></section>
+        <section id="review-queue-feedback" class="notice success" hidden role="status" aria-live="polite"></section>
+        <section id="review-queue-content" hidden>
+            <div class="docs-summary docs-summary-three">
+                <article><span>Aguardando revisão</span><strong id="review-count-pending">0</strong></article>
+                <article><span>Mais antigo</span><strong id="review-oldest-date">—</strong></article>
+                <article><span>Tipo disponível</span><strong>Usinagem</strong></article>
+            </div>
+            <section class="docs-panel">
+                <div class="docs-panel-heading">
+                    <div>
+                        <span class="eyebrow">PENDÊNCIAS</span>
+                        <h2>Documentos aguardando revisão</h2>
+                        <p>Abra um documento para consultar os dados e registrar sua decisão técnica.</p>
+                    </div>
+                </div>
+                <div class="docs-toolbar">
+                    <label class="docs-search" for="review-search">
+                        <span aria-hidden="true">⌕</span>
+                        <input id="review-search" type="search" placeholder="Buscar por código, peça ou autor..." autocomplete="off">
+                    </label>
+                </div>
+                <div class="docs-table-wrap">
+                    <table class="docs-table">
+                        <thead><tr><th>Código</th><th>Peça</th><th>Executado por</th><th>Enviado em</th><th>Ação</th></tr></thead>
+                        <tbody id="review-queue-body"><tr><td colspan="5" class="docs-placeholder">Carregando fila...</td></tr></tbody>
+                    </table>
+                </div>
+                <p id="review-queue-empty" class="docs-empty" hidden>Nenhum documento está aguardando revisão.</p>
+            </section>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/revisoes.js?v=20261031-2"></script>
+</body>
+</html>

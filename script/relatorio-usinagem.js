@@ -11,8 +11,6 @@
     const saveButton = document.getElementById("save-draft");
     const submitButton = document.getElementById("submit-report");
     const printButton = document.getElementById("print-report");
-    const approveButton = document.getElementById("approve-document");
-    const requestChangesButton = document.getElementById("request-changes");
     const logoutButton = document.getElementById("logout-button");
 
     const statusLabels = {
@@ -26,7 +24,6 @@
     let profile = null;
     let currentDocument = null;
     let canEdit = false;
-    let canReview = false;
     let busy = false;
 
     function value(id) { return document.getElementById(id).value.trim(); }
@@ -45,7 +42,7 @@
 
     function setBusy(state) {
         busy = state;
-        [saveButton, submitButton, approveButton, requestChangesButton].forEach((button) => {
+        [saveButton, submitButton].forEach((button) => {
             if (button) button.disabled = state;
         });
     }
@@ -118,56 +115,68 @@
         const status = currentDocument.status;
         const isArchived = Boolean(currentDocument.deleted_at);
         canEdit = !isArchived && currentDocument.created_by === user.id && ["draft", "changes_requested"].includes(status);
-        canReview = !isArchived && ["reviewer", "admin"].includes(profile.role) && status === "submitted";
 
         const archivedNotice = document.getElementById("archived-document-notice");
         archivedNotice.hidden = !isArchived;
         if (isArchived) {
-            archivedNotice.textContent = profile.role === "admin"
-                ? "Este documento está arquivado. Ele está em modo de leitura; restaure-o pela lista de documentação para voltar a editá-lo ou revisá-lo."
-                : "Este documento está arquivado e disponível somente para consulta.";
+            archivedNotice.textContent = "Este documento está arquivado e disponível somente para consulta. Um administrador pode restaurá-lo pela lista de documentação.";
             const badge = document.getElementById("document-status");
             badge.textContent = "Arquivado";
             badge.className = "status-badge archived";
         }
 
-        form.querySelectorAll("input, textarea, select").forEach((element) => {
-            if (element.id === "review-notes") return;
-            element.disabled = !canEdit;
-        });
+        form.querySelectorAll("input, textarea, select").forEach((element) => { element.disabled = !canEdit; });
         document.getElementById("add-dimension").hidden = !canEdit;
         dimensionRows.querySelectorAll("button").forEach((button) => button.hidden = !canEdit);
         dimensionRows.querySelectorAll("input, select").forEach((element) => element.disabled = !canEdit);
         saveButton.hidden = !canEdit;
         submitButton.hidden = !canEdit;
-        document.getElementById("review-panel").hidden = !canReview;
-        document.getElementById("review-notes").disabled = !canReview;
-        approveButton.hidden = !canReview;
-        requestChangesButton.hidden = !canReview;
         printButton.hidden = !currentDocument.id;
-
-        if (status === "changes_requested" && currentDocument.review_notes) {
-            document.getElementById("existing-review-panel").hidden = false;
-            document.getElementById("existing-review-notes").textContent = currentDocument.review_notes;
-        }
         document.getElementById("reviewer-name").textContent = currentDocument.reviewer_name_snapshot || "Aguardando revisão";
         document.getElementById("report-subtitle").textContent = canEdit
             ? "Preencha os dados e salve o rascunho ou envie para revisão."
-            : canReview ? "Este relatório está aguardando sua revisão técnica."
-            : "Visualização do registro de usinagem.";
+            : "Visualização do registro de usinagem. A revisão técnica acontece na área Revisão técnica do portal.";
+    }
+
+    function renderReviewHistory(reviews) {
+        const panel = document.getElementById("review-history-panel");
+        const list = document.getElementById("review-history-list");
+        list.replaceChildren();
+        panel.hidden = !reviews.length;
+        for (const review of reviews) {
+            const item = document.createElement("article");
+            item.className = "review-history-item";
+            const heading = document.createElement("div");
+            heading.className = "review-history-heading";
+            const reviewer = document.createElement("strong");
+            reviewer.textContent = review.reviewer_name_snapshot || "Revisor da equipe";
+            const outcome = document.createElement("span");
+            outcome.className = `status-badge ${review.decision === "approved" ? "approved" : "changes"}`;
+            outcome.textContent = review.decision === "approved" ? "Aprovado" : "Correções solicitadas";
+            heading.append(reviewer, outcome);
+            const date = document.createElement("time");
+            date.className = "review-history-date";
+            date.textContent = new Date(review.created_at).toLocaleString("pt-BR");
+            const notes = document.createElement("p");
+            notes.textContent = review.notes || "Nenhuma observação registrada.";
+            item.append(heading, date, notes);
+            list.append(item);
+        }
     }
 
     async function fetchCurrentDocument() {
         const { data, error } = await supabase.from("documents").select("*").eq("id", documentId).single();
         if (error) throw error;
         if (data.document_type !== "machining") throw new Error("Este documento não é um relatório de usinagem.");
-        const [{ data: report, error: reportError }, { data: checks, error: checksError }] = await Promise.all([
+        const [reportResult, checksResult, reviewsResult] = await Promise.all([
             supabase.from("machining_reports").select("*").eq("document_id", documentId).maybeSingle(),
-            supabase.from("dimensional_checks").select("*").eq("document_id", documentId).order("sort_order")
+            supabase.from("dimensional_checks").select("*").eq("document_id", documentId).order("sort_order"),
+            supabase.from("document_reviews").select("reviewer_name_snapshot, decision, notes, created_at").eq("document_id", documentId).order("created_at", { ascending: false })
         ]);
-        if (reportError) throw reportError;
-        if (checksError) throw checksError;
-        currentDocument = { ...data, report, checks: checks || [] };
+        if (reportResult.error) throw reportResult.error;
+        if (checksResult.error) throw checksResult.error;
+        if (reviewsResult.error) throw reviewsResult.error;
+        currentDocument = { ...data, report: reportResult.data, checks: checksResult.data || [], reviews: reviewsResult.data || [] };
         fillForm();
         applyPermissions();
     }
@@ -191,11 +200,11 @@
         setValue("execution-observations", report.execution_observations);
         setValue("scrap-quantity", report.scrap_quantity ?? 0);
         setValue("produced-quantity", report.produced_quantity ?? 0);
-        setValue("review-notes", "");
         documentId && (document.getElementById("report-subtitle").textContent = `Criado em ${new Date(doc.created_at).toLocaleString("pt-BR")}`);
         dimensionRows.replaceChildren();
         (doc.checks || []).forEach(addDimensionRow);
         if (!doc.checks?.length) addDimensionRow();
+        renderReviewHistory(doc.reviews || []);
     }
 
     function collectReport() {
@@ -297,35 +306,6 @@
         }
     }
 
-    async function reviewDocument(decision) {
-        if (busy || !currentDocument) return;
-        const notes = value("review-notes");
-        if (decision === "changes_requested" && notes.length < 3) {
-            showError("Descreva as correções solicitadas antes de devolver o relatório.");
-            return;
-        }
-        const confirmation = decision === "approved"
-            ? window.confirm("Confirmar a aprovação deste relatório?")
-            : window.confirm("Devolver este relatório ao autor para correções?");
-        if (!confirmation) return;
-        setBusy(true);
-        showError("");
-        try {
-            const { error } = await supabase.rpc("review_engineering_document", {
-                p_document_id: currentDocument.id,
-                p_decision: decision,
-                p_notes: notes || null
-            });
-            if (error) throw error;
-            await fetchCurrentDocument();
-            showMessage(decision === "approved" ? "Relatório aprovado." : "Relatório devolvido para correções.", "success");
-        } catch (error) {
-            console.error(error);
-            showError(error.message || "Não foi possível concluir a revisão.");
-        } finally {
-            setBusy(false);
-        }
-    }
 
     async function initialize() {
         const { data: authData, error: authError } = await supabase.auth.getUser();
@@ -355,8 +335,6 @@
             addDimensionRow();
             document.getElementById("document-status").textContent = "Novo rascunho";
             document.getElementById("document-status").className = "status-badge draft";
-            document.getElementById("review-panel").hidden = true;
-            document.getElementById("existing-review-panel").hidden = true;
             printButton.hidden = true;
             canEdit = true;
         }
@@ -368,8 +346,6 @@
         catch (error) { console.error(error); showError(error.message || "Não foi possível salvar o rascunho."); }
     });
     submitButton.addEventListener("click", submitReport);
-    approveButton.addEventListener("click", () => reviewDocument("approved"));
-    requestChangesButton.addEventListener("click", () => reviewDocument("changes_requested"));
     printButton.addEventListener("click", () => window.print());
     logoutButton.addEventListener("click", async () => {
         logoutButton.disabled = true;

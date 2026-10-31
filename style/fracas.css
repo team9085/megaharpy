@@ -1,0 +1,49 @@
+/* Mega Harpy #9085 | FRACAS - confiabilidade e ações corretivas */
+.fracas-main { padding-top: 42px; }
+.fracas-summary { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.fracas-summary article { min-height: 88px; }
+.fracas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fracas-plan-grid { margin-top: 16px; }
+.fracas-table { min-width: 1050px; }
+.fracas-code-cell { color: var(--mh-red-dark); font-weight: 800; white-space: nowrap; }
+.fracas-reference-cell { min-width: 185px; max-width: 300px; overflow-wrap: anywhere; }
+.lifecycle-badge, .severity-badge {
+    display: inline-flex; width: fit-content; align-items: center; justify-content: center;
+    padding: 5px 9px; border-radius: 999px; font-size: 10px; font-weight: 800; line-height: 1.3;
+    white-space: nowrap;
+}
+.lifecycle-badge.open { color: #765222; background: #fff4df; }
+.lifecycle-badge.analysis { color: #245a85; background: #e8f2fb; }
+.lifecycle-badge.implemented { color: #5e4a82; background: #f0eafa; }
+.lifecycle-badge.closed { color: #28633d; background: #eaf6ed; }
+.severity-badge.low { color: #28633d; background: #eaf6ed; }
+.severity-badge.medium { color: #805514; background: #fff5dd; }
+.severity-badge.high { color: #a13d27; background: #ffede7; }
+.severity-badge.critical { color: #fff; background: #8f1720; }
+.severity-badge.unknown { color: #68515a; background: #f1ecef; }
+.evidence-upload-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.evidence-upload-row input[type="file"] { max-width: 100%; color: #68484e; font: inherit; font-size: 12px; }
+.evidence-list { display: grid; gap: 9px; margin-top: 12px; }
+.evidence-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 13px; border: 1px solid #f0e1e3; border-radius: 9px; background: #fffafa; }
+.evidence-link { min-width: 0; color: var(--mh-red-dark); font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+.fracas-responsibility-panel .review-data-grid { margin-top: 14px; }
+.fracas-report-actions { align-items: flex-start; }
+.fracas-report-actions .report-action-buttons { justify-content: flex-end; }
+.fracas-report-actions .report-action-buttons button { white-space: nowrap; }
+@media (max-width: 900px) {
+    .fracas-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    .fracas-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fracas-grid { grid-template-columns: 1fr; }
+    .evidence-upload-row { align-items: stretch; flex-direction: column; }
+    .evidence-upload-row button { width: 100%; }
+    .evidence-item { align-items: flex-start; flex-direction: column; }
+}
+@media print {
+    .evidence-upload-row, #upload-evidence, #fracas-save-draft, #fracas-submit,
+    #fracas-save-plan, #fracas-mark-implemented, #fracas-revalidation-rejected,
+    #fracas-close-cycle, #fracas-print { display: none !important; }
+    .fracas-main { padding-top: 0; }
+    .fracas-table { min-width: 0; }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#800e13">
+    <title>Relatório FRACAS | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css"><link rel="stylesheet" href="../style/documentos.css?v=fracas-20261031-2"><link rel="stylesheet" href="../style/fracas.css?v=fracas-20261031-2">
+</head>
+<body class="portal-page documentation-page">
+<header class="portal-header">
+    <a class="brand" href="../index.html" aria-label="Site da Mega Harpy"><img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo"><span class="brand-name">MEGA HARPY <small>#9085</small></span></a>
+    <div class="header-actions"><a class="outline-button header-link" href="portal.html">Voltar ao portal</a><a class="outline-button header-link" href="fracas.html">FRACAS</a><span class="member-chip" id="header-member-name">Carregando perfil...</span><button id="logout-button" class="outline-button" type="button">Sair</button></div>
+</header>
+<main class="portal-main docs-main fracas-main">
+    <section class="report-title-row"><div><span class="eyebrow">CONFIABILIDADE · INVESTIGAÇÃO DE FALHAS</span><h1>Relatório de Falha e Ação Corretiva (FRACAS)</h1><p id="fracas-subtitle">Novo registro de falha.</p></div><div class="report-identification"><span>Código do documento</span><strong id="fracas-document-code">Gerado ao salvar</strong><span id="fracas-document-status" class="status-badge draft">Novo rascunho</span><span class="lifecycle-badge open" id="fracas-lifecycle-status">Aberto</span></div></section>
+    <section id="fracas-error" class="notice error" hidden role="alert"></section><section id="fracas-message" class="notice" hidden role="status" aria-live="polite"></section>
+    <form id="fracas-form" novalidate>
+        <fieldset class="docs-panel" data-initial-section>
+            <legend>1. Identificação da falha e contexto</legend>
+            <div class="docs-form-grid fracas-grid">
+                <label class="docs-field"><span>Código da peça / montagem (Drawing Number)</span><input id="part-assembly-code" type="text" maxlength="100" required placeholder="Ex.: FRC-26-DRV-ASM-001"></label>
+                <label class="docs-field"><span>Data da ocorrência</span><input id="occurrence-date" type="date" required></label>
+                <label class="docs-field"><span>Horário da ocorrência</span><input id="occurrence-time" type="time" required></label>
+                <label class="docs-field"><span>Ambiente</span><input id="environment" type="text" maxlength="160" required placeholder="Ex.: Oficina, campo de prática, competição..."></label>
+                <label class="docs-field"><span>Condição do ocorrido</span><select id="event-condition" required><option value="">Selecione</option><option value="bench_test">Teste de bancada</option><option value="load_stress">Teste de carga / estresse</option><option value="pilot_practice">Treino de piloto / prática</option><option value="competition">Partida de competição</option></select></label>
+                <label class="docs-field" id="competition-number-field" hidden><span>Número da partida</span><input id="competition-number" type="text" maxlength="30" placeholder="Ex.: Qualificação 12"></label>
+                <label class="docs-field"><span>Gravidade da falha</span><select id="severity" required><option value="">Selecione</option><option value="low">Baixa — não impede a operação do robô</option><option value="medium">Média — perda parcial de funcionalidades de um subsistema</option><option value="high">Alta — interrupção total de um subsistema</option><option value="critical">Crítica — parada total do robô ou risco de segurança</option></select></label>
+                <div class="docs-field docs-readonly-field"><span>Falha registrada por</span><strong id="fracas-author">—</strong></div>
+            </div>
+        </fieldset>
+
+        <fieldset class="docs-panel" data-initial-section>
+            <legend>2. Descrição do sintoma</legend>
+            <div class="docs-form-grid docs-form-grid-one">
+                <label class="docs-field"><span>Comportamento esperado</span><textarea id="expected-behavior" rows="3" maxlength="6000" required placeholder="Descreva como o mecanismo, circuito ou subsistema deveria se comportar..."></textarea></label>
+                <label class="docs-field"><span>Comportamento observado</span><textarea id="observed-behavior" rows="4" maxlength="8000" required placeholder="Descreva o que realmente aconteceu, incluindo condições e sintomas observáveis..."></textarea></label>
+            </div>
+        </fieldset>
+
+        <fieldset class="docs-panel" data-evidence-section>
+            <legend>3. Evidências</legend>
+            <p class="docs-help">Anexe fotos ou PDFs que ajudem a demonstrar a falha. Arquivos privados, limitados a 10 MB cada; formatos aceitos: JPG, PNG, WEBP e PDF.</p>
+            <div class="evidence-upload-row"><input id="fracas-evidence-files" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" multiple><button class="secondary-button" id="upload-evidence" type="button">Anexar evidências</button></div>
+            <div id="fracas-evidence-list" class="evidence-list"><p class="docs-empty">Nenhuma evidência anexada.</p></div>
+        </fieldset>
+
+        <fieldset class="docs-panel" data-action-section>
+            <legend>4. Análise da causa-raiz</legend>
+            <div class="docs-form-grid docs-form-grid-one">
+                <label class="docs-field"><span>Método dos 5 Porquês</span><textarea id="five-whys" rows="6" maxlength="10000" placeholder="1. Por que a falha aconteceu?\n2. Por que essa condição existia?\n3. Por que isso não foi detectado antes?\n4. Qual processo permitiu a causa?\n5. Qual é a causa-raiz sistêmica?"></textarea><small class="docs-help">Registre a cadeia de perguntas e respostas utilizada para chegar à causa-raiz.</small></label>
+                <label class="docs-field"><span>Classificação da causa-raiz</span><select id="root-cause-category"><option value="">Ainda não classificada</option><option value="design_cad">Erro de Projeto / CAD — subdimensionamento mecânico</option><option value="material_manufacturing">Falha de Material / Fabricação — tolerância incorreta, defeito de usinagem</option><option value="software_logic">Falha de Software / Lógica — ausência de soft limit, erro de cálculo PID</option><option value="electrical_assembly">Falha Elétrica / Montagem — mau contato, crimpagem incorreta, inversão</option><option value="operational_human">Operacional / Fator Humano — colisão por erro do piloto, mau uso</option></select></label>
+            </div>
+        </fieldset>
+
+        <fieldset class="docs-panel" data-action-section>
+            <legend>5. Plano de ação corretiva e preventiva</legend>
+            <div class="docs-form-grid docs-form-grid-one">
+                <label class="docs-field"><span>Ação imediata (contenção)</span><textarea id="immediate-containment" rows="3" maxlength="6000" placeholder="O que foi feito imediatamente para conter a falha e evitar novos danos?"></textarea></label>
+                <label class="docs-field"><span>Ação definitiva (engenharia)</span><textarea id="definitive-action" rows="4" maxlength="8000" placeholder="Descreva a solução definitiva de engenharia para eliminar a causa-raiz..."></textarea></label>
+            </div>
+            <div class="docs-form-grid fracas-grid fracas-plan-grid">
+                <label class="docs-field"><span>Código da Ordem de Mudança (ECO), se aplicável</span><input id="linked-eco-code" type="text" maxlength="40" placeholder="Ex.: ECO-26-001"></label>
+                <label class="docs-field"><span>Prazo para implementação</span><input id="implementation-due-date" type="date"></label>
+            </div>
+        </fieldset>
+
+        <fieldset class="docs-panel" data-action-section data-revalidation-section>
+            <legend>6. Validação e revalidação</legend>
+            <p class="docs-help">A descrição do teste pode ser registrada após a implementação da ação. O resultado é definido pelo revisor técnico ao validar ou reabrir o ciclo.</p>
+            <div class="docs-form-grid docs-form-grid-one">
+                <label class="docs-field"><span>Teste de revalidação executado</span><textarea id="revalidation-test" rows="4" maxlength="8000" placeholder="Descreva os testes realizados para confirmar a eficácia da ação corretiva..."></textarea></label>
+            </div>
+            <div class="docs-form-grid fracas-grid">
+                <label class="docs-field"><span>Resultado do teste de revalidação</span><select id="revalidation-result"><option value="">Ainda não realizado</option><option value="approved">Aprovado — falha resolvida</option><option value="rejected">Reprovado — falha persiste</option></select></label>
+                <div class="docs-field docs-readonly-field"><span>Ação corretiva validada por (líder técnico / mentor)</span><strong id="fracas-validator">Aguardando validação</strong></div>
+                <div class="docs-field docs-readonly-field"><span>Data de fechamento</span><strong id="fracas-closed-date">—</strong></div>
+            </div>
+        </fieldset>
+
+        <section class="docs-panel fracas-responsibility-panel">
+            <div class="docs-panel-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Registro de responsabilidade e aprovação</h2><p>Identidades e datas são capturadas automaticamente a partir das contas autenticadas e das decisões registradas.</p></div></div>
+            <div class="review-data-grid">
+                <div><span>Falha registrada por</span><strong id="fracas-author-audit">—</strong></div>
+                <div><span>Revisado / analisado por</span><strong id="fracas-analyzed-by">Aguardando análise</strong></div>
+                <div><span>Última decisão técnica</span><strong id="fracas-reviewed-by">—</strong></div>
+                <div><span>Status do ciclo</span><strong id="fracas-cycle-label">Aberto</strong></div>
+            </div>
+        </section>
+
+        <section class="docs-panel" id="fracas-history-panel" hidden>
+            <div class="docs-panel-heading"><div><span class="eyebrow">HISTÓRICO DO CICLO</span><h2>Transições e validações</h2></div></div>
+            <div id="fracas-status-history" class="review-history-list"></div>
+        </section>
+        <section class="docs-panel" id="fracas-review-history-panel" hidden>
+            <div class="docs-panel-heading"><div><span class="eyebrow">REVISÃO TÉCNICA</span><h2>Histórico de revisão</h2><p>A análise inicial acontece na área de Revisão técnica.</p></div></div>
+            <div id="fracas-review-history" class="review-history-list"></div>
+        </section>
+
+        <div class="report-actions fracas-report-actions">
+            <span id="fracas-save-feedback" class="save-feedback" role="status" aria-live="polite"></span>
+            <div class="report-action-buttons">
+                <button class="secondary-button" id="fracas-save-draft" type="button">Salvar rascunho</button>
+                <button class="primary-button" id="fracas-submit" type="button">Enviar para revisão técnica</button>
+                <button class="secondary-button" id="fracas-save-plan" type="button" hidden>Salvar plano de ação</button>
+                <button class="primary-button" id="fracas-mark-implemented" type="button" hidden>Marcar ação implementada</button>
+                <button class="secondary-button" id="fracas-revalidation-rejected" type="button" hidden>Reabrir ciclo FRACAS</button>
+                <button class="primary-button" id="fracas-close-cycle" type="button" hidden>Fechar / validar FRACAS</button>
+                <button class="secondary-button" id="fracas-print" type="button">Imprimir / salvar PDF</button>
+            </div>
+        </div>
+    </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../script/supabase-client.js"></script>
+<script src="../script/relatorio-fracas.js?v=fracas-20261031-2"></script>
+</body>
+</html>

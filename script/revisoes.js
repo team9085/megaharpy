@@ -16,7 +16,8 @@
         electrical: "Elétrica",
         assembly: "Montagem",
         maintenance: "Manutenção",
-        eco: "ECO"
+        eco: "ECO",
+        fracas: "FRACAS"
     };
 
     function showError(message) {
@@ -57,7 +58,8 @@
                 electrical: "revisao-eletrica.html",
                 assembly: "revisao-montagem.html",
                 maintenance: "revisao-manutencao.html",
-                eco: "revisao-eco.html"
+                eco: "revisao-eco.html",
+                fracas: "revisao-fracas.html"
             };
             link.href = `${destinations[doc.document_type] || "revisoes.html"}?id=${encodeURIComponent(doc.id)}`;
             link.textContent = "Analisar";
@@ -79,20 +81,21 @@
         try {
             const { data: docs, error } = await supabase.from("documents")
                 .select("id,document_code,document_type,status,executor_name_snapshot,submitted_at,deleted_at")
-                .in("document_type", ["machining", "electrical", "assembly", "maintenance", "eco"])
+                .in("document_type", ["machining", "electrical", "assembly", "maintenance", "eco", "fracas"])
                 .eq("status", "submitted").is("deleted_at", null)
                 .order("submitted_at", { ascending: true });
             if (error) throw error;
 
             const byType = type => (docs || []).filter(doc => doc.document_type === type).map(doc => doc.id);
-            const [machining, electrical, assembly, maintenance, eco] = await Promise.all([
+            const [machining, electrical, assembly, maintenance, eco, fracas] = await Promise.all([
                 byType("machining").length ? supabase.from("machining_reports").select("document_id,part_code").in("document_id", byType("machining")) : Promise.resolve({ data: [], error: null }),
                 byType("electrical").length ? supabase.from("electrical_reports").select("document_id,circuit_identification").in("document_id", byType("electrical")) : Promise.resolve({ data: [], error: null }),
                 byType("assembly").length ? supabase.from("assembly_reports").select("document_id,assembly_code").in("document_id", byType("assembly")) : Promise.resolve({ data: [], error: null }),
                 byType("maintenance").length ? supabase.from("maintenance_reports").select("document_id,assembly_code").in("document_id", byType("maintenance")) : Promise.resolve({ data: [], error: null }),
-                byType("eco").length ? supabase.from("eco_reports").select("document_id,affected_codes").in("document_id", byType("eco")) : Promise.resolve({ data: [], error: null })
+                byType("eco").length ? supabase.from("eco_reports").select("document_id,affected_codes").in("document_id", byType("eco")) : Promise.resolve({ data: [], error: null }),
+                byType("fracas").length ? supabase.from("fracas_reports").select("document_id,part_assembly_code").in("document_id", byType("fracas")) : Promise.resolve({ data: [], error: null })
             ]);
-            for (const result of [machining, electrical, assembly, maintenance, eco]) {
+            for (const result of [machining, electrical, assembly, maintenance, eco, fracas]) {
                 if (result.error) throw result.error;
             }
 
@@ -102,6 +105,7 @@
             for (const row of assembly.data || []) references.set(row.document_id, row.assembly_code || "");
             for (const row of maintenance.data || []) references.set(row.document_id, row.assembly_code || "");
             for (const row of eco.data || []) references.set(row.document_id, (row.affected_codes || "").replace(/\s*\n\s*/g, " · "));
+            for (const row of fracas.data || []) references.set(row.document_id, row.part_assembly_code || "");
 
             pending = (docs || []).map(doc => ({ ...doc, display_reference: references.get(doc.id) || "" }));
             render();

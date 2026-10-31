@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Ordem de Mudança de Engenharia | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css?v=eco-20261031-1">
+</head>
+<body class="portal-page documentation-page">
+<header class="portal-header">
+    <a class="brand" href="../index.html" aria-label="Site da Mega Harpy"><img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo"><span class="brand-name">MEGA HARPY <small>#9085</small></span></a>
+    <div class="header-actions">
+        <a class="outline-button header-link" href="portal.html">Voltar ao portal</a>
+        <a class="outline-button header-link" href="engenharia.html">Engenharia</a>
+        <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+        <button id="logout-button" class="outline-button" type="button">Sair</button>
+    </div>
+</header>
+<main class="portal-main docs-main">
+    <section class="report-title-row"><div><span class="eyebrow">ENGENHARIA · CONTROLE DE CONFIGURAÇÃO</span><h1>Ordem de Mudança de Engenharia (ECO)</h1><p id="eco-subtitle">Nova solicitação de mudança.</p></div><div class="report-identification"><span>Código do documento</span><strong id="eco-document-code">Gerado ao salvar</strong><span id="eco-document-status" class="status-badge draft">Novo rascunho</span></div></section>
+    <section id="eco-error" class="notice error" hidden role="alert"></section>
+    <section id="eco-message" class="notice" hidden role="status" aria-live="polite"></section>
+    <section id="eco-archived-notice" class="notice archived-notice" hidden role="status"></section>
+    <form id="eco-form" novalidate>
+        <fieldset class="docs-panel"><legend>Identificação da solicitação</legend><div class="docs-form-grid">
+            <label class="docs-field"><span>Data de execução / solicitação</span><input id="eco-date" type="date" required></label>
+            <label class="docs-field"><span>Horário de início</span><input id="eco-start-time" type="time" required></label>
+            <label class="docs-field"><span>Horário de término</span><input id="eco-end-time" type="time" required></label>
+            <div class="docs-field docs-readonly-field"><span>Solicitado por</span><strong id="eco-author">—</strong></div>
+            <div class="docs-field docs-readonly-field"><span>Revisado / aprovado por</span><strong id="eco-reviewer">Aguardando revisão</strong></div>
+        </div></fieldset>
+        <fieldset class="docs-panel"><legend>Solicitação de mudança</legend><div class="docs-form-grid docs-form-grid-one">
+            <label class="docs-field"><span>Código das montagens / peças alteradas</span><textarea id="eco-affected-codes" rows="4" maxlength="5000" required placeholder="Informe os Drawing Numbers afetados, um por linha. Ex.:\nFRC-26-DRV-ASM-001\nFRC-26-DRV-PRT-004"></textarea><small class="docs-help">Use os códigos oficiais da cartilha de padronização. É possível informar mais de uma montagem ou peça.</small></label>
+            <label class="docs-field"><span>Motivo da solicitação</span><textarea id="eco-change-reason" rows="7" maxlength="10000" required placeholder="Explique por que a mudança é necessária, qual condição motivou a solicitação e o que se espera alterar..."></textarea></label>
+        </div></fieldset>
+        <section class="docs-panel review-history-panel" id="eco-review-history-panel" hidden><div class="docs-panel-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Histórico de revisão</h2><p>As decisões técnicas são registradas na área de Revisão técnica.</p></div></div><div id="eco-review-history" class="review-history-list"></div></section>
+        <div class="report-actions"><span id="eco-save-feedback" class="save-feedback" role="status" aria-live="polite"></span><div class="report-action-buttons"><button class="secondary-button" id="eco-save-draft" type="button">Salvar rascunho</button><button class="primary-button" id="eco-submit" type="button">Enviar para revisão</button><button class="secondary-button" id="eco-print" type="button" hidden>Imprimir / salvar PDF</button></div></div>
+    </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../script/supabase-client.js"></script>
+<script src="../script/eco.js?v=eco-20261031-1"></script>
+</body>
+</html>

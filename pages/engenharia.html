@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Engenharia | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css?v=eco-20261031-1">
+    <link rel="stylesheet" href="../style/engenharia.css?v=eco-20261031-1">
+</head>
+<body class="portal-page documentation-page">
+<header class="portal-header">
+    <a class="brand" href="../index.html" aria-label="Site da Mega Harpy"><img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo"><span class="brand-name">MEGA HARPY <small>#9085</small></span></a>
+    <div class="header-actions">
+        <a class="outline-button header-link" href="portal.html">Voltar ao portal</a>
+        <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+        <button id="logout-button" class="outline-button" type="button">Sair</button>
+    </div>
+</header>
+<main class="portal-main docs-main engineering-main">
+    <section class="welcome-section docs-heading">
+        <div><span class="eyebrow">PORTAL DA EQUIPE · ENGENHARIA</span><h1>Engenharia</h1><p>Controle de alterações de projeto, peças e montagens do robô.</p></div>
+        <a class="primary-button engineering-new-button" href="eco.html">+ Nova ordem de mudança</a>
+    </section>
+    <section class="engineering-feature docs-panel">
+        <div class="engineering-feature-icon" aria-hidden="true">⌘</div>
+        <div class="engineering-feature-copy"><span class="eyebrow">CONTROLE DE CONFIGURAÇÃO</span><h2>Ordens de Mudança de Engenharia (ECO)</h2><p>Registre quais peças ou montagens serão alteradas, por que a mudança é necessária e acompanhe sua avaliação técnica.</p></div>
+        <a class="secondary-button" href="eco.html">Criar ECO</a>
+    </section>
+    <section id="engineering-error" class="notice error" hidden role="alert"></section>
+    <section id="engineering-feedback" class="notice success" hidden role="status" aria-live="polite"></section>
+    <section id="engineering-content" hidden>
+        <div class="docs-summary">
+            <article><span>Total de ECOs</span><strong id="eco-count-total">0</strong></article>
+            <article><span>Rascunhos</span><strong id="eco-count-draft">0</strong></article>
+            <article><span>Aguardando revisão</span><strong id="eco-count-submitted">0</strong></article>
+            <article><span>Aprovadas</span><strong id="eco-count-approved">0</strong></article>
+        </div>
+        <section class="docs-panel">
+            <div class="docs-panel-heading">
+                <div><span class="eyebrow">HISTÓRICO DE ENGENHARIA</span><h2 id="eco-list-title">Ordens de Mudança</h2><p>Todos os membros ativos podem consultar as ECOs não arquivadas.</p></div>
+                <button class="secondary-button" id="refresh-ecos" type="button">↻ Atualizar</button>
+            </div>
+            <div class="docs-toolbar">
+                <label class="docs-search" for="eco-search"><span aria-hidden="true">⌕</span><input id="eco-search" type="search" placeholder="Buscar por código, peça ou responsável..." autocomplete="off"></label>
+                <div class="docs-toolbar-actions">
+                    <label class="docs-filter" for="eco-status-filter"><span>Status</span><select id="eco-status-filter"><option value="all">Todos</option><option value="draft">Rascunho</option><option value="submitted">Aguardando revisão</option><option value="changes_requested">Correções solicitadas</option><option value="approved">Aprovada</option></select></label>
+                    <button class="archive-toggle-button" id="show-archived-ecos" type="button" hidden>Ver arquivadas</button>
+                </div>
+            </div>
+            <p class="docs-archived-note" id="eco-archived-note" hidden>Visualizando ECOs arquivadas. Administradores podem restaurar cada registro pela coluna Ações.</p>
+            <div class="docs-table-wrap"><table class="docs-table"><thead><tr><th>Código</th><th>Montagens / peças alteradas</th><th>Solicitado por</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead><tbody id="eco-table-body"><tr><td colspan="6" class="docs-placeholder">Carregando ECOs...</td></tr></tbody></table></div>
+            <p id="eco-empty" class="docs-empty" hidden>Nenhuma ECO corresponde aos filtros.</p>
+        </section>
+    </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../script/supabase-client.js"></script>
+<script src="../script/engenharia.js?v=eco-20261031-1"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* Mega Harpy #9085 | Área de Engenharia / ECO */
+.engineering-main { padding-top: 48px; }
+.engineering-new-button { display: inline-flex; align-items: center; justify-content: center; min-height: 43px; padding: 11px 17px; text-decoration: none; white-space: nowrap; }
+.engineering-feature { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; border-color: #e5c9cd; background: linear-gradient(105deg, #fff 0%, #fff8f8 100%); }
+.engineering-feature-icon { display: grid; width: 54px; height: 54px; flex: 0 0 54px; place-items: center; border-radius: 14px; color: #fff; background: #ad2831; font-size: 27px; }
+.engineering-feature-copy { flex: 1; min-width: 0; }
+.engineering-feature-copy h2 { margin: 5px 0 5px; color: var(--mh-deep); font-family: "Kagitingan", sans-serif; font-size: clamp(20px, 3vw, 25px); }
+.engineering-feature-copy p { margin: 0; color: #80666a; font-size: 13px; line-height: 1.55; }
+.engineering-feature > a { flex: 0 0 auto; text-decoration: none; }
+.eco-code-cell { color: var(--mh-red-dark); font-weight: 800; white-space: nowrap; }
+.eco-reference-cell { min-width: 190px; max-width: 330px; white-space: pre-line; overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+    .engineering-feature { align-items: flex-start; flex-wrap: wrap; }
+    .engineering-feature-copy { flex-basis: calc(100% - 75px); }
+    .engineering-feature > a { width: 100%; }
+    .engineering-new-button { width: 100%; }
+}

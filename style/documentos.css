@@ -98,3 +98,27 @@ fieldset.docs-panel { min-inline-size: 0; }
     .dimension-table-wrap { overflow: visible; }
     .dimension-table { min-width: 0; }
 }
+
+
+/* Arquivamento reversivel de documentos */
+.docs-actions-cell { white-space: nowrap; }
+.docs-actions-cell > * { margin: 3px 5px 3px 0; }
+.small-secondary-button, .small-danger-button {
+    display: inline-flex; min-height: 32px; align-items: center; justify-content: center;
+    padding: 6px 10px; border: 1px solid #d9c9cb; border-radius: 7px;
+    color: var(--mh-deep); background: #fff; font: inherit; font-size: 11px;
+    text-decoration: none; cursor: pointer;
+}
+.small-secondary-button:hover { border-color: #a78b90; background: #fffafa; }
+.small-danger-button { border-color: #efc5c5; color: #9b3030; background: #fff4f4; }
+.small-danger-button:hover { border-color: #d99a9a; background: #ffeaea; }
+.status-badge.archived { color: #654b69; background: #eee7f2; }
+.archived-notice { border: 1px solid #d8c6df; color: #624b70; background: #f8f3fb; }
+
+.small-primary-button {
+    display: inline-flex; min-height: 32px; align-items: center; justify-content: center;
+    padding: 6px 10px; border: 1px solid #ad2831; border-radius: 7px;
+    color: #fff; background: #ad2831; font: inherit; font-size: 11px;
+    text-decoration: none; cursor: pointer;
+}
+.small-primary-button:hover { border-color: #800e14; background: #800e14; }

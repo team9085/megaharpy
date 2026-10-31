@@ -116,8 +116,20 @@
 
     function applyPermissions() {
         const status = currentDocument.status;
-        canEdit = currentDocument.created_by === user.id && ["draft", "changes_requested"].includes(status);
-        canReview = ["reviewer", "admin"].includes(profile.role) && status === "submitted";
+        const isArchived = Boolean(currentDocument.deleted_at);
+        canEdit = !isArchived && currentDocument.created_by === user.id && ["draft", "changes_requested"].includes(status);
+        canReview = !isArchived && ["reviewer", "admin"].includes(profile.role) && status === "submitted";
+
+        const archivedNotice = document.getElementById("archived-document-notice");
+        archivedNotice.hidden = !isArchived;
+        if (isArchived) {
+            archivedNotice.textContent = profile.role === "admin"
+                ? "Este documento está arquivado. Ele está em modo de leitura; restaure-o pela lista de documentação para voltar a editá-lo ou revisá-lo."
+                : "Este documento está arquivado e disponível somente para consulta.";
+            const badge = document.getElementById("document-status");
+            badge.textContent = "Arquivado";
+            badge.className = "status-badge archived";
+        }
 
         form.querySelectorAll("input, textarea, select").forEach((element) => {
             if (element.id === "review-notes") return;

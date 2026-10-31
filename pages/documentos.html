@@ -33,6 +33,7 @@
         </section>
 
         <section id="docs-error" class="notice error" hidden role="alert"></section>
+        <section id="docs-feedback" class="notice success" hidden role="status" aria-live="polite"></section>
         <section id="docs-content" hidden>
             <div class="docs-summary">
                 <article><span>Total de relatórios</span><strong id="count-total">0</strong></article>
@@ -63,13 +64,14 @@
                             <option value="submitted">Aguardando revisão</option>
                             <option value="changes_requested">Correções solicitadas</option>
                             <option value="approved">Aprovado</option>
+                            <option value="archived" id="archived-filter-option" hidden>Arquivados (admin)</option>
                         </select>
                     </label>
                 </div>
                 <div class="docs-table-wrap">
                     <table class="docs-table">
                         <thead><tr>
-                            <th>Código</th><th>Peça</th><th>Executado por</th><th>Data</th><th>Status</th><th></th>
+                            <th>Código</th><th>Peça</th><th>Executado por</th><th>Data</th><th>Status</th><th>Ações</th>
                         </tr></thead>
                         <tbody id="documents-table-body"><tr><td colspan="6" class="docs-placeholder">Carregando documentos...</td></tr></tbody>
                     </table>

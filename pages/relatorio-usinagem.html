@@ -37,6 +37,7 @@
         </section>
 
         <section id="report-error" class="notice error" hidden role="alert"></section>
+        <section id="archived-document-notice" class="notice archived-notice" hidden role="status"></section>
         <section id="report-message" class="notice" hidden role="status" aria-live="polite"></section>
 
         <form id="machining-form" novalidate>
@@ -79,8 +80,7 @@
                 <div class="docs-form-grid docs-form-grid-one">
                     <label class="docs-field">
                         <span>Código da peça</span>
-                        <input id="part-code" type="text" maxlength="120" placeholder="Ex.: FRC-26-DRV-PRT-001">
-                        <small class="docs-help">Use o Drawing Number do CAD conforme POP-001. Para componentes da CNC Antonela, consulte o padrão POP-004 (ex.: FRC-ANS-GNT-ASM-001).</small>
+                        <input id="part-code" type="text" maxlength="120" placeholder="Ex.: FRC-...">
                     </label>
                     <label class="docs-field">
                         <span>Material utilizado</span>

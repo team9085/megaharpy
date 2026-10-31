@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Relatório de Usinagem | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css">
+</head>
+<body class="portal-page documentation-page">
+    <header class="portal-header">
+        <a class="brand" href="portal.html" aria-label="Voltar ao portal">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="portal-main docs-main">
+        <a class="docs-back-link" href="documentos.html">← Voltar aos documentos</a>
+        <section class="report-title-row">
+            <div>
+                <span class="eyebrow">DOCUMENTAÇÃO DE PROCESSOS · MECÂNICA</span>
+                <h1>Relatório de Usinagem</h1>
+                <p id="report-subtitle">Novo registro de execução</p>
+            </div>
+            <div class="report-identification">
+                <span>Código do documento</span>
+                <strong id="document-code">Gerado ao salvar</strong>
+                <span id="document-status" class="status-badge draft">Novo rascunho</span>
+            </div>
+        </section>
+
+        <section id="report-error" class="notice error" hidden role="alert"></section>
+        <section id="report-message" class="notice" hidden role="status" aria-live="polite"></section>
+
+        <form id="machining-form" novalidate>
+            <fieldset class="docs-panel">
+                <legend>Identificação e execução</legend>
+                <div class="docs-form-grid">
+                    <label class="docs-field">
+                        <span>Tipo de registro</span>
+                        <select id="record-part" required>
+                            <option value="initial">Início</option>
+                            <option value="continuation">Continuação</option>
+                            <option value="final">Final</option>
+                        </select>
+                    </label>
+                    <label class="docs-field">
+                        <span>Data de execução</span>
+                        <input id="execution-date" type="date" required>
+                    </label>
+                    <label class="docs-field">
+                        <span>Horário de início</span>
+                        <input id="start-time" type="time" required>
+                    </label>
+                    <label class="docs-field">
+                        <span>Horário de término</span>
+                        <input id="end-time" type="time" required>
+                    </label>
+                    <div class="docs-field docs-readonly-field">
+                        <span>Executado por</span>
+                        <strong id="executor-name">—</strong>
+                    </div>
+                    <div class="docs-field docs-readonly-field">
+                        <span>Revisado / aprovado por</span>
+                        <strong id="reviewer-name">Aguardando revisão</strong>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="docs-panel">
+                <legend>Especificações de entrada</legend>
+                <div class="docs-form-grid docs-form-grid-one">
+                    <label class="docs-field">
+                        <span>Código da peça</span>
+                        <input id="part-code" type="text" maxlength="120" placeholder="Ex.: FRC-...">
+                    </label>
+                    <label class="docs-field">
+                        <span>Material utilizado</span>
+                        <input id="material-used" type="text" maxlength="200" placeholder="Ex.: Alumínio 6061-T6">
+                    </label>
+                    <label class="docs-field">
+                        <span>Dimensões do material bruto</span>
+                        <input id="raw-dimensions" type="text" maxlength="200" placeholder="Ex.: 100 × 50 × 6 mm">
+                    </label>
+                    <label class="docs-field">
+                        <span>Máquina utilizada</span>
+                        <input id="machine-used" type="text" maxlength="200" placeholder="Máquina / equipamento">
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="docs-panel">
+                <legend>Etapas executadas</legend>
+                <div class="docs-form-grid docs-form-grid-one">
+                    <label class="docs-field">
+                        <span>Operações realizadas</span>
+                        <textarea id="operations" rows="4" placeholder="Descreva a sequência de operações executadas..."></textarea>
+                    </label>
+                    <label class="docs-field">
+                        <span>Ferramentas utilizadas</span>
+                        <textarea id="tools" rows="3" placeholder="Liste ferramentas, instrumentos e acessórios utilizados..."></textarea>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="docs-panel">
+                <legend>Validação dimensional</legend>
+                <p class="docs-help">Adicione uma linha para cada cota verificada. As linhas não têm limite fixo.</p>
+                <div class="dimension-table-wrap">
+                    <table class="dimension-table">
+                        <thead><tr><th>Cota projetada</th><th>Cota medida</th><th>Dentro da tolerância?</th><th></th></tr></thead>
+                        <tbody id="dimension-rows"></tbody>
+                    </table>
+                </div>
+                <div class="dimension-actions">
+                    <button class="secondary-button" id="add-dimension" type="button">+ Adicionar cota</button>
+                </div>
+            </fieldset>
+
+            <fieldset class="docs-panel">
+                <legend>Observações e produção</legend>
+                <label class="docs-field">
+                    <span>Observações / ocorrências da execução</span>
+                    <textarea id="execution-observations" rows="4" placeholder="Registre ocorrências, desvios, condições relevantes ou deixe em branco se não houver..."></textarea>
+                </label>
+                <div class="docs-form-grid docs-quantity-grid">
+                    <label class="docs-field">
+                        <span>Quantidade de peças refugo</span>
+                        <input id="scrap-quantity" type="number" min="0" step="1" value="0">
+                    </label>
+                    <label class="docs-field">
+                        <span>Quantidade de peças produzidas</span>
+                        <input id="produced-quantity" type="number" min="0" step="1" value="0">
+                    </label>
+                </div>
+            </fieldset>
+
+            <section class="docs-panel review-panel" id="review-panel" hidden>
+                <div class="docs-panel-heading">
+                    <div><span class="eyebrow">CONTROLE DE QUALIDADE</span><h2>Revisão técnica</h2></div>
+                </div>
+                <label class="docs-field">
+                    <span>Observações / não conformidades da revisão</span>
+                    <textarea id="review-notes" rows="4" placeholder="Descreva as correções necessárias ou observações da aprovação..."></textarea>
+                </label>
+                <div class="review-actions" id="review-actions">
+                    <button class="secondary-button request-changes-button" id="request-changes" type="button">Solicitar correções</button>
+                    <button class="primary-button" id="approve-document" type="button">Aprovar relatório</button>
+                </div>
+            </section>
+
+            <section class="docs-panel existing-review-panel" id="existing-review-panel" hidden>
+                <span class="eyebrow">ÚLTIMA REVISÃO</span>
+                <p id="existing-review-notes">—</p>
+            </section>
+
+            <div class="report-actions">
+                <span id="save-feedback" class="save-feedback" role="status" aria-live="polite"></span>
+                <div class="report-action-buttons">
+                    <button class="secondary-button" id="save-draft" type="button">Salvar rascunho</button>
+                    <button class="primary-button" id="submit-report" type="button">Enviar para revisão</button>
+                    <button class="secondary-button" id="print-report" type="button">Imprimir / salvar PDF</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/relatorio-usinagem.js"></script>
+</body>
+</html>

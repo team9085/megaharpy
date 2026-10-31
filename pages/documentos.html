@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Documentação de Engenharia | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/documentos.css">
+</head>
+<body class="portal-page documentation-page">
+    <header class="portal-header">
+        <a class="brand" href="portal.html" aria-label="Voltar ao portal">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="portal-main docs-main">
+        <a class="docs-back-link" href="portal.html">← Voltar ao portal</a>
+        <section class="welcome-section docs-heading">
+            <div>
+                <span class="eyebrow">SISTEMA DE DOCUMENTAÇÃO</span>
+                <h1>Documentação de engenharia</h1>
+                <p>Registros de execução, validação e revisão dos processos da equipe.</p>
+            </div>
+            <button class="primary-button docs-new-button" id="new-machining-report" type="button">+ Novo relatório de usinagem</button>
+        </section>
+
+        <section id="docs-error" class="notice error" hidden role="alert"></section>
+        <section id="docs-content" hidden>
+            <div class="docs-summary">
+                <article><span>Total de relatórios</span><strong id="count-total">0</strong></article>
+                <article><span>Rascunhos</span><strong id="count-draft">0</strong></article>
+                <article><span>Aguardando revisão</span><strong id="count-submitted">0</strong></article>
+                <article><span>Aprovados</span><strong id="count-approved">0</strong></article>
+            </div>
+
+            <section class="docs-panel">
+                <div class="docs-panel-heading">
+                    <div>
+                        <span class="eyebrow">REGISTROS DA EQUIPE</span>
+                        <h2>Relatórios de usinagem</h2>
+                        <p>Todos os membros ativos podem consultar os documentos, inclusive rascunhos.</p>
+                    </div>
+                    <button class="secondary-button" id="refresh-documents" type="button">↻ Atualizar</button>
+                </div>
+                <div class="docs-toolbar">
+                    <label class="docs-search" for="docs-search">
+                        <span aria-hidden="true">⌕</span>
+                        <input id="docs-search" type="search" placeholder="Buscar por código, peça ou responsável..." autocomplete="off">
+                    </label>
+                    <label class="docs-filter" for="status-filter">
+                        <span>Status</span>
+                        <select id="status-filter">
+                            <option value="all">Todos</option>
+                            <option value="draft">Rascunho</option>
+                            <option value="submitted">Aguardando revisão</option>
+                            <option value="changes_requested">Correções solicitadas</option>
+                            <option value="approved">Aprovado</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="docs-table-wrap">
+                    <table class="docs-table">
+                        <thead><tr>
+                            <th>Código</th><th>Peça</th><th>Executado por</th><th>Data</th><th>Status</th><th></th>
+                        </tr></thead>
+                        <tbody id="documents-table-body"><tr><td colspan="6" class="docs-placeholder">Carregando documentos...</td></tr></tbody>
+                    </table>
+                </div>
+                <p id="docs-empty" class="docs-empty" hidden>Nenhum relatório corresponde aos filtros.</p>
+            </section>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/documentos.js"></script>
+</body>
+</html>

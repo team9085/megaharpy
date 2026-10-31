@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Redefinir senha | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-card" aria-labelledby="page-title">
+            <a class="brand" href="../index.html" aria-label="Voltar ao site da Mega Harpy">
+                <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+                <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+            </a>
+
+            <div class="auth-heading">
+                <span class="eyebrow">SEGURANÇA DA CONTA</span>
+                <h1 id="page-title">Redefinir senha</h1>
+                <p>Escolha uma nova senha para sua conta.</p>
+            </div>
+
+            <form id="reset-form" class="auth-form" hidden>
+                <label for="new-password">Nova senha</label>
+                <input id="new-password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo de 8 caracteres">
+
+                <label for="confirm-password">Confirmar nova senha</label>
+                <input id="confirm-password" type="password" autocomplete="new-password" minlength="8" required placeholder="Digite a senha novamente">
+
+                <button class="primary-button" id="save-password" type="submit">
+                    <span class="button-label">Salvar nova senha</span>
+                    <span class="button-spinner" aria-hidden="true"></span>
+                </button>
+            </form>
+
+            <p id="reset-message" class="form-message" role="status" aria-live="polite">Validando o link de recuperação...</p>
+            <a class="back-link inside-link" href="login.html">Voltar ao login</a>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/redefinir-senha.js"></script>
+</body>
+</html>

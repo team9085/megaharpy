@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Portal de Membros | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+</head>
+<body class="portal-page">
+    <header class="portal-header">
+        <a class="brand" href="../index.html" aria-label="Site da Mega Harpy">
+            <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+            <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+        </a>
+        <div class="header-actions">
+            <span class="member-chip" id="header-member-name">Carregando perfil...</span>
+            <button id="logout-button" class="outline-button" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <section class="welcome-section">
+            <div>
+                <span class="eyebrow">AMBIENTE INTERNO</span>
+                <h1>Portal da equipe</h1>
+                <p id="welcome-message">Verificando sua sessão...</p>
+            </div>
+            <div class="role-pill" id="role-pill">Verificando acesso</div>
+        </section>
+
+        <section id="portal-error" class="notice error" hidden role="alert"></section>
+
+        <section class="portal-grid" id="portal-content" hidden>
+            <a class="portal-card" href="#relatorios" aria-label="Área de relatórios, em desenvolvimento">
+                <span class="card-icon">▤</span>
+                <span class="card-title">Relatórios</span>
+                <span class="card-description">Usinagem, elétrica, montagem e manutenção.</span>
+                <span class="card-status">Em desenvolvimento</span>
+            </a>
+
+            <a class="portal-card" href="#engenharia" aria-label="Área de engenharia, em desenvolvimento">
+                <span class="card-icon">⌘</span>
+                <span class="card-title">Engenharia</span>
+                <span class="card-description">Peças, montagens e ordens de mudança.</span>
+                <span class="card-status">Em desenvolvimento</span>
+            </a>
+
+            <a class="portal-card" href="#fracas" aria-label="Área de falhas, em desenvolvimento">
+                <span class="card-icon">!</span>
+                <span class="card-title">Falhas e ações corretivas</span>
+                <span class="card-description">Registros FRACAS e acompanhamento de ações.</span>
+                <span class="card-status">Em desenvolvimento</span>
+            </a>
+
+            <article class="portal-card role-card" id="reviewer-tools" hidden>
+                <span class="card-icon">✓</span>
+                <span class="card-title">Revisão técnica</span>
+                <span class="card-description">Área reservada a revisores e aprovadores.</span>
+                <span class="card-status">Acesso de revisor</span>
+            </article>
+
+            <article class="portal-card role-card" id="admin-tools" hidden>
+                <span class="card-icon">⚙</span>
+                <span class="card-title">Administração</span>
+                <span class="card-description">Área reservada à administração do portal.</span>
+                <span class="card-status">Acesso administrativo</span>
+            </article>
+        </section>
+
+        <section class="profile-panel" id="profile-panel" hidden>
+            <div>
+                <span class="eyebrow">SEU PERFIL</span>
+                <h2 id="profile-name">—</h2>
+                <p id="profile-email">—</p>
+            </div>
+            <dl class="profile-details">
+                <div><dt>Nível de acesso</dt><dd id="profile-role">—</dd></div>
+                <div><dt>Membro desde</dt><dd id="profile-created">—</dd></div>
+            </dl>
+        </section>
+
+        <p class="portal-disclaimer">As áreas exibidas estão em implantação. As permissões dos dados são aplicadas no banco de dados, não apenas nesta interface.</p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/portal.js"></script>
+</body>
+</html>

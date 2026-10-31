@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#800e13">
+    <title>Portal de Membros | Mega Harpy #9085</title>
+    <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../style/portal.css">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-card" aria-labelledby="page-title">
+            <a class="brand" href="../index.html" aria-label="Voltar ao site da Mega Harpy">
+                <img src="../assets/images/svg/Harpia Fundo Branco.svg" alt="Logo da Mega Harpy" class="brand-logo">
+                <span class="brand-name">MEGA HARPY <small>#9085</small></span>
+            </a>
+
+            <div class="auth-heading">
+                <span class="eyebrow">ÁREA RESTRITA</span>
+                <h1 id="page-title">Portal de membros</h1>
+                <p>Entre com as credenciais fornecidas pela administração da equipe.</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <label for="email">E-mail</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="username"
+                    placeholder="nome@exemplo.com"
+                    required
+                >
+
+                <label for="password">Senha</label>
+                <div class="password-field">
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        placeholder="Sua senha"
+                        required
+                    >
+                    <button class="password-toggle" id="toggle-password" type="button" aria-label="Mostrar senha">Mostrar</button>
+                </div>
+
+                <button class="primary-button" id="login-button" type="submit">
+                    <span class="button-label">Entrar no portal</span>
+                    <span class="button-spinner" aria-hidden="true"></span>
+                </button>
+                <p id="login-message" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="auth-secondary">
+                <button type="button" class="text-button" id="forgot-password">Esqueci minha senha</button>
+            </div>
+
+            <p class="auth-footnote">Acesso exclusivo aos membros autorizados da equipe 9085.</p>
+        </section>
+        <a class="back-link" href="../index.html">← Voltar ao site da equipe</a>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../script/supabase-client.js"></script>
+    <script src="../script/login.js"></script>
+</body>
+</html>

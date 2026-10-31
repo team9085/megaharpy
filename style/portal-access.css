@@ -1,0 +1,12 @@
+/* Small-screen navigation only for the public homepage. */
+@media (max-width: 680px) {
+  body > nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 8px;
+    scrollbar-width: thin;
+  }
+  body > nav a { flex: 0 0 auto; margin: 0 7px; font-size: 12px; white-space: nowrap; }
+  body > nav p { flex: 0 0 auto; margin: 0 2px; }
+}

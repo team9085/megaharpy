@@ -52,6 +52,7 @@
     const value = id => document.getElementById(id).value.trim();
     const setValue = (id, v) => { document.getElementById(id).value = v ?? ""; };
     const isReviewer = () => ["reviewer", "admin"].includes(profile?.role);
+    const isAdmin = () => profile?.role === "admin";
     const escapeFileName = name => String(name || "evidence").normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "_").slice(0, 100) || "evidence";
     function errorDetails(error) {
         return [error?.message, error?.details, error?.hint, error?.code ? `Código: ${error.code}` : ""]
@@ -108,7 +109,8 @@
         submitButton.hidden = !canEditInitial;
         savePlanButton.hidden = !(currentDocument && status === "approved" && canEditPlan);
         implementButton.hidden = !(currentDocument && status === "approved" && canEditPlan && cycle === "under_analysis");
-        closeCycleButton.hidden = !(currentDocument && status === "approved" && isReviewer() && cycle === "action_implemented");
+        // Final closure is an administrator-only engineering authorization.
+        closeCycleButton.hidden = !(currentDocument && status === "approved" && isAdmin() && cycle === "action_implemented");
         rejectRevalidationButton.hidden = !(currentDocument && status === "approved" && isReviewer() && cycle === "action_implemented");
 
         if (isArchived) showMessage("Este FRACAS está arquivado e foi aberto em modo de consulta.", "info");

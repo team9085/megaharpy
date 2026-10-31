@@ -9,6 +9,7 @@
     const message = document.getElementById("login-message");
     const forgotButton = document.getElementById("forgot-password");
     const togglePasswordButton = document.getElementById("toggle-password");
+    const googleLoginButton = document.getElementById("google-login-button");
 
     function setMessage(text, type = "info") {
         message.textContent = text;
@@ -54,6 +55,30 @@
             setMessage("O serviço de autenticação não respondeu. Tente novamente.", "error");
         } finally {
             setLoading(false);
+        }
+    });
+
+    googleLoginButton.addEventListener("click", async () => {
+        googleLoginButton.disabled = true;
+        setMessage("Redirecionando para o Google...", "info");
+
+        try {
+            // Return to the protected portal after Supabase completes OAuth.
+            const redirectTo = new URL("portal.html", window.location.href).href;
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo,
+                    queryParams: { prompt: "select_account" }
+                }
+            });
+
+            if (error) throw error;
+            // On success Supabase redirects the browser to Google.
+        } catch (error) {
+            console.error("Falha no login com Google:", error);
+            setMessage("Não foi possível iniciar o login com Google. Tente novamente ou procure um administrador.", "error");
+            googleLoginButton.disabled = false;
         }
     });
 

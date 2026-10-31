@@ -66,13 +66,13 @@
 
         <fieldset class="docs-panel" data-action-section data-revalidation-section>
             <legend>6. Validação e revalidação</legend>
-            <p class="docs-help">A descrição do teste pode ser registrada após a implementação da ação. O resultado é definido pelo revisor técnico ao validar ou reabrir o ciclo.</p>
+            <p class="docs-help">A descrição do teste pode ser registrada após a implementação da ação. A aprovação final e o fechamento do FRACAS são exclusivos de administradores. Revisores podem registrar uma reprovação e reabrir o ciclo.</p>
             <div class="docs-form-grid docs-form-grid-one">
                 <label class="docs-field"><span>Teste de revalidação executado</span><textarea id="revalidation-test" rows="4" maxlength="8000" placeholder="Descreva os testes realizados para confirmar a eficácia da ação corretiva..."></textarea></label>
             </div>
             <div class="docs-form-grid fracas-grid">
                 <label class="docs-field"><span>Resultado do teste de revalidação</span><select id="revalidation-result"><option value="">Ainda não realizado</option><option value="approved">Aprovado — falha resolvida</option><option value="rejected">Reprovado — falha persiste</option></select></label>
-                <div class="docs-field docs-readonly-field"><span>Ação corretiva validada por (líder técnico / mentor)</span><strong id="fracas-validator">Aguardando validação</strong></div>
+                <div class="docs-field docs-readonly-field"><span>Ação corretiva validada por (administrador / líder técnico / mentor)</span><strong id="fracas-validator">Aguardando validação</strong></div>
                 <div class="docs-field docs-readonly-field"><span>Data de fechamento</span><strong id="fracas-closed-date">—</strong></div>
             </div>
         </fieldset>

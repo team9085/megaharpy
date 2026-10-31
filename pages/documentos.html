@@ -7,7 +7,7 @@
     <title>Documentação de Engenharia | Mega Harpy #9085</title>
     <link rel="icon" href="../assets/images/svg/Harpia Fundo Branco.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../style/portal.css">
-    <link rel="stylesheet" href="../style/documentos.css?v=20261031-2">
+    <link rel="stylesheet" href="../style/documentos.css?v=20261031-3">
 </head>
 <body class="portal-page documentation-page">
     <header class="portal-header">
@@ -56,18 +56,21 @@
                         <span aria-hidden="true">⌕</span>
                         <input id="docs-search" type="search" placeholder="Buscar por código, peça ou responsável..." autocomplete="off">
                     </label>
-                    <label class="docs-filter" for="status-filter">
-                        <span>Status</span>
-                        <select id="status-filter">
-                            <option value="all">Todos</option>
-                            <option value="draft">Rascunho</option>
-                            <option value="submitted">Aguardando revisão</option>
-                            <option value="changes_requested">Correções solicitadas</option>
-                            <option value="approved">Aprovado</option>
-                            <option value="archived" id="archived-filter-option" hidden>Arquivados (admin)</option>
-                        </select>
-                    </label>
+                    <div class="docs-toolbar-actions">
+                        <label class="docs-filter" for="status-filter">
+                            <span>Status</span>
+                            <select id="status-filter">
+                                <option value="all">Todos</option>
+                                <option value="draft">Rascunho</option>
+                                <option value="submitted">Aguardando revisão</option>
+                                <option value="changes_requested">Correções solicitadas</option>
+                                <option value="approved">Aprovado</option>
+                            </select>
+                        </label>
+                        <button class="archive-toggle-button" id="show-archived-documents" type="button" hidden>Ver arquivados</button>
+                    </div>
                 </div>
+                <p class="docs-archived-note" id="archived-view-note" hidden>Você está vendo documentos arquivados. Use <strong>Restaurar</strong> na linha do documento para devolvê-lo à lista ativa.</p>
                 <div class="docs-table-wrap">
                     <table class="docs-table">
                         <thead><tr>
@@ -83,6 +86,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../script/supabase-client.js"></script>
-    <script src="../script/documentos.js?v=20261031-2"></script>
+    <script src="../script/documentos.js?v=20261031-3"></script>
 </body>
 </html>

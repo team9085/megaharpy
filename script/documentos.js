@@ -10,10 +10,12 @@
     const refreshButton = document.getElementById("refresh-documents");
     const newButton = document.getElementById("new-machining-report");
     const logoutButton = document.getElementById("logout-button");
-    const archivedOption = document.getElementById("archived-filter-option");
+    const archivedToggle = document.getElementById("show-archived-documents");
+    const archivedNote = document.getElementById("archived-view-note");
     let documents = [];
     let user = null;
     let profile = null;
+    let archivedView = false;
 
     const statusLabels = {
         draft: ["Rascunho", "draft"],
@@ -118,7 +120,10 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
                 archive: `${doc.document_code} foi arquivado.`,
                 restore: `${doc.document_code} foi restaurado.`
             };
-            if (action === "restore" || action === "archive") statusFilter.value = "all";
+            if (action === "restore" || action === "archive") {
+                archivedView = false;
+                statusFilter.value = "all";
+            }
             await loadDocuments();
             showFeedback(messages[action]);
         } catch (error) {
@@ -129,10 +134,28 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
         }
     }
 
+    function updateArchiveControls() {
+        if (!archivedToggle) return;
+        const archivedCount = documents.filter((doc) => Boolean(doc.deleted_at)).length;
+        archivedToggle.hidden = profile?.role !== "admin";
+        archivedToggle.textContent = archivedView
+            ? "← Voltar aos documentos"
+            : `Ver arquivados${archivedCount ? ` (${archivedCount})` : ""}`;
+        statusFilter.disabled = archivedView;
+        if (archivedNote) archivedNote.hidden = !archivedView;
+    }
+
+    function setArchivedView(enabled) {
+        archivedView = Boolean(enabled && profile?.role === "admin");
+        searchInput.value = "";
+        statusFilter.value = "all";
+        updateArchiveControls();
+        render();
+    }
+
     function render() {
         const query = searchInput.value.trim().toLocaleLowerCase("pt-BR");
         const selected = statusFilter.value;
-        const archivedView = selected === "archived";
         const filtered = documents.filter((doc) => {
             const archived = Boolean(doc.deleted_at);
             if (archived !== archivedView) return false;
@@ -180,7 +203,7 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
         }
 
         document.getElementById("docs-empty").textContent = archivedView
-            ? "A área de arquivados está vazia ou nenhum registro corresponde à busca."
+            ? "Não há documentos arquivados ou nenhum registro corresponde à busca."
             : "Nenhum relatório corresponde aos filtros.";
         document.getElementById("docs-empty").hidden = filtered.length > 0;
         const active = documents.filter((doc) => !doc.deleted_at);
@@ -190,6 +213,7 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
         document.getElementById("count-approved").textContent = String(active.filter((d) => d.status === "approved").length);
         const heading = document.querySelector(".docs-panel-heading h2");
         if (heading) heading.textContent = archivedView ? "Relatórios arquivados" : "Relatórios de usinagem";
+        updateArchiveControls();
     }
 
     async function loadDocuments() {
@@ -231,8 +255,8 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
         }
         profile = memberProfile;
         document.getElementById("header-member-name").textContent = profile.full_name || user.email;
-        archivedOption.hidden = profile.role !== "admin";
-        archivedOption.disabled = profile.role !== "admin";
+        archivedToggle.hidden = profile.role !== "admin";
+        updateArchiveControls();
         content.hidden = false;
         await loadDocuments();
     }
@@ -241,6 +265,7 @@ O documento sairá da lista normal e poderá ser restaurado por um administrador
     refreshButton.addEventListener("click", loadDocuments);
     searchInput.addEventListener("input", render);
     statusFilter.addEventListener("change", render);
+    archivedToggle.addEventListener("click", () => setArchivedView(!archivedView));
     logoutButton.addEventListener("click", async () => {
         const { error } = await supabase.auth.signOut();
         if (error) { showError("Não foi possível encerrar a sessão."); return; }

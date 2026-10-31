@@ -175,3 +175,19 @@ fieldset.docs-panel { min-inline-size: 0; }
     .docs-toolbar-actions .docs-filter select { min-width: 0; width: 100%; }
     .archive-toggle-button { width: 100%; }
 }
+
+
+/* Etapa 4 — relatório de elétrica e seleção de documentos */
+.electrical-check-table { min-width: 780px; }
+.electrical-check-table select { width: 100%; min-width: 110px; }
+.connection-table { min-width: 560px; }
+.connection-actions { display:flex; justify-content:flex-end; margin-top:12px; }
+.report-type-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:22px; }
+.report-type-card { display:flex; min-height:190px; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:16px; padding:23px; border:1px solid #ead7da; border-radius:14px; color:var(--mh-deep); background:#fff; text-decoration:none; box-shadow:0 8px 22px rgba(70,20,28,.05); transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.report-type-card:hover { transform:translateY(-3px); border-color:#c9868c; box-shadow:0 12px 28px rgba(70,20,28,.09); }
+.report-type-card .type-icon { display:grid; width:46px; height:46px; place-items:center; border-radius:12px; color:#fff; background:#ad2831; font-size:22px; }
+.report-type-card strong { font-family:"Kagitingan",sans-serif; font-size:23px; }
+.report-type-card small { color:#80666a; font-size:13px; line-height:1.5; }
+.report-type-card .type-cta { color:#ad2831; font-size:12px; font-weight:800; }
+.doc-type-badge { display:inline-flex; align-items:center; padding:5px 8px; border-radius:999px; color:#75454d; background:#f6e9eb; font-size:10px; font-weight:800; white-space:nowrap; }
+@media(max-width:650px){.report-type-grid{grid-template-columns:1fr}.electrical-check-table{min-width:680px}}

@@ -29,7 +29,7 @@
                 <h1>Documentação de engenharia</h1>
                 <p>Registros de execução, validação e revisão dos processos da equipe.</p>
             </div>
-            <button class="primary-button docs-new-button" id="new-machining-report" type="button">+ Novo relatório de usinagem</button>
+            <button class="primary-button docs-new-button" id="new-report" type="button">+ Novo relatório</button>
         </section>
 
         <section id="docs-error" class="notice error" hidden role="alert"></section>
@@ -46,7 +46,7 @@
                 <div class="docs-panel-heading">
                     <div>
                         <span class="eyebrow">REGISTROS DA EQUIPE</span>
-                        <h2>Relatórios de usinagem</h2>
+                        <h2>Relatórios de processo</h2>
                         <p>Todos os membros ativos podem consultar os documentos, inclusive rascunhos.</p>
                     </div>
                     <button class="secondary-button" id="refresh-documents" type="button">↻ Atualizar</button>
@@ -74,9 +74,9 @@
                 <div class="docs-table-wrap">
                     <table class="docs-table">
                         <thead><tr>
-                            <th>Código</th><th>Peça</th><th>Executado por</th><th>Data</th><th>Status</th><th>Ações</th>
+                            <th>Código</th><th>Tipo</th><th>Peça / circuito</th><th>Executado por</th><th>Data</th><th>Status</th><th>Ações</th>
                         </tr></thead>
-                        <tbody id="documents-table-body"><tr><td colspan="6" class="docs-placeholder">Carregando documentos...</td></tr></tbody>
+                        <tbody id="documents-table-body"><tr><td colspan="7" class="docs-placeholder">Carregando documentos...</td></tr></tbody>
                     </table>
                 </div>
                 <p id="docs-empty" class="docs-empty" hidden>Nenhum relatório corresponde aos filtros.</p>
@@ -86,6 +86,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../script/supabase-client.js"></script>
-    <script src="../script/documentos.js?v=20261031-3"></script>
+    <script src="../script/documentos.js?v=20261031-4"></script>
 </body>
 </html>
